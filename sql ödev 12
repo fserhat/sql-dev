@@ -1,0 +1,31 @@
+
+SELECT count(*) AS filmsayisi
+FROM film
+WHERE
+(
+  SELECT length
+  FROM film
+  WHERE length > AVG(length)
+);
+
+
+SELECT count(*) AS rentalrate
+FROM film
+WHERE
+(
+  SELECT COUNT(MAX(rental_rate))
+  FROM film
+  WHERE rental_rate
+);
+
+(
+Select MIN(rental_rate) from film
+)
+UNION
+(
+Select MIN(replacement_cost) from film
+)
+Ödev 12
+ORDER BY payment DESC
+
+SELECT customer_id,first_name,last_name,(SELECT COUNT(*) FROM payment WHERE p.customer_id = c.customer_id) as payment FROM customer ORDER BY payment DESC
